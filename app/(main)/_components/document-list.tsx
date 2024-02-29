@@ -12,7 +12,7 @@ import { FileIcon } from "lucide-react";
 interface DocumentListProps {
   parentDocumentId?: Id<"documents">;
   level?: number;
-  date?: Doc<"documents">[];
+  data?: Doc<"documents">[];
 }
 export const DocumentList = ({
   parentDocumentId,
