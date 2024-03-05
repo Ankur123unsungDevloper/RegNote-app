@@ -62,7 +62,10 @@ export const CoverImageModal = () => {
           className="w-full outline-none"
           disabled={isSubmitting}
           value={file}
-          onChange={onChange} width={0} height={0}        />
+          onChange={onChange}
+          width={450}
+          height={100}
+        />
       </DialogContent>
     </Dialog>
   );
