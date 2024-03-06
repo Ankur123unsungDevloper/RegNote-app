@@ -26,17 +26,25 @@ export const Heading = () => {
         <Button asChild>
           <Link href="/documents">
             Enter RegNote
-            <ArrowRight className="h-4 w-4 ml-2" />
+            <ArrowRight className="h-5 w-5 ml-2" />
           </Link>
-      </Button>
+        </Button>
       )}
       {!isAuthenticated && !isLoading && (
         <SignInButton mode="modal">
           <Button>
             Get RegNote free
-            <ArrowRight className="h-4 w-4 ml-2" />
+            <ArrowRight className="h-5 w-5 ml-2" />
           </Button>
         </SignInButton>
+      )}
+      {!isAuthenticated && !isLoading && (
+          <Button className="text-blue-700 pl-10" variant="link" asChild>
+          <Link href="/">
+              Request a demo
+            <ArrowRight className="h-5 w-5 ml-2" />
+          </Link>
+          </Button>
       )}
     </div>
   )
