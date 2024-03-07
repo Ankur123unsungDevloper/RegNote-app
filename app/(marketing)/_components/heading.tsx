@@ -14,8 +14,8 @@ export const Heading = () => {
       <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold">
         Your Ideas, Documents, & Plans.Unified. Welcome to <span className="underline">RegNote</span>
       </h1>
-      <h3 className="text-base sm:text-xl md:text-2xl font-medium">
-        RegNote is connected workspace where <br/> better, faster work happens
+      <h3 className="text-base sm:text-xl md:text-xl font-medium">
+        RegNote is connected workspace where better, faster work happens
       </h3>
       {isLoading && (
         <div className="w-full flex items-center justify-center">

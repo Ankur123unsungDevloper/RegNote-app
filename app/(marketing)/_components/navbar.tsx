@@ -26,21 +26,21 @@ export const Navbar = () => {
     )}>
       <Logo />
       <div className="relative left-10 md:justify-start w-full flex items-center md:right-15">
-        <Button className="gap-x-1" variant="ghost" size="sm">
+        <Button variant="ghost" size="sm">
           Product
-          <ChevronDown className="h-3 w-3" />
+          <ChevronDown className="h-3 w-3 ml-1.5" />
         </Button>
-        <Button className="gap-x-1" variant="ghost" size="sm">
+        <Button variant="ghost" size="sm">
           Download
-          <ChevronDown className="h-3 w-3" />
+          <ChevronDown className="h-3 w-3 ml-1.5" />
         </Button>
-        <Button className="gap-x-1" variant="ghost" size="sm">
+        <Button variant="ghost" size="sm">
           Solutions
-          <ChevronDown className="h-3 w-3" />
+          <ChevronDown className="h-3 w-3 ml-1.5" />
         </Button>
-        <Button className="gap-x-1" variant="ghost" size="sm">
+        <Button variant="ghost" size="sm">
           Resources
-          <ChevronDown className="h-3 w-3" />
+          <ChevronDown className="h-3 w-3 ml-1.5" />
         </Button>
         <Button variant="ghost" size="sm">
           Pricing
