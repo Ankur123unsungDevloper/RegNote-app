@@ -1,47 +1,60 @@
 import { Button } from "@/components/ui/button"
 import { Logo } from "./logo"
 import { Facebook, Instagram, Twitter, Youtube, Globe, Linkedin, ChevronDown } from "lucide-react"
+import './page.css'
 
 export const Footer = () => {
   return (
-    <div className="block border-t m-4">
-      <div className="flex items-center w-full p-6 bg-background z-50 dark:bg-[#1F1F1F]">
-      <div className="relative left-60">
-          <Logo />
-          <div className="flex relative top-5 right-2 justify-center">
-            <Button variant="ghost" size="icon">
-              <Instagram color="#757575" strokeWidth={1.5} absoluteStrokeWidth />
-            </Button>
-            <Button variant="ghost" size="icon">
-              <Twitter color="#757575" strokeWidth={1.5} absoluteStrokeWidth />
-            </Button>
-            <Button variant="ghost" size="icon">
-            <Linkedin color="#757575" strokeWidth={1.5} absoluteStrokeWidth />
-            </Button>
-            <Button variant="ghost" size="icon">
-              <Facebook color="#757575" strokeWidth={1.5} absoluteStrokeWidth />
-            </Button>
-            <Button variant="ghost" size="icon">
-              <Youtube className="hover:" color="#757575" strokeWidth={1.5} absoluteStrokeWidth />
-            </Button>
+    <footer className="footerOuter dark:bg-[#1F1F1F]">
+      <nav className="footerInner">
+        <div className="footerTop">
+          <div>
+            <Logo />
           </div>
-          <div className="flex relative top-10 right-2">
+        </div>
+        <div className="footerTopMain">
+          <ul className="footerSocial">
+            <li className="socialItem_Instagram">
+              <Button variant="ghost" size="icon">
+                <Instagram className="hover:inset-1" strokeWidth={1.5} absoluteStrokeWidth />
+              </Button>
+            </li>
+            <li className="socialItem">
+              <Button variant="ghost" size="icon">
+                <Twitter strokeWidth={1.5} absoluteStrokeWidth />
+              </Button>
+            </li>
+            <li className="socialItem">
+              <Button variant="ghost" size="icon">
+                <Linkedin strokeWidth={1.5} absoluteStrokeWidth />
+              </Button>
+            </li>
+            <li className="socialItem">
+              <Button variant="ghost" size="icon">
+                <Facebook strokeWidth={1.5} absoluteStrokeWidth />
+              </Button>
+            </li>
+            <li className="socialItem">
+              <Button variant="ghost" size="icon">
+                <Youtube strokeWidth={1.5} absoluteStrokeWidth />
+              </Button>
+            </li>
+          </ul>
+          <div className="languagePicker">
             <Button variant="outline">
-              <Globe className="mr-3" size={36} color="#757575" strokeWidth={2.5} absoluteStrokeWidth />
+              <Globe className="mr-3" strokeWidth={2.5} absoluteStrokeWidth />
               English
-              <ChevronDown className="h-3 w-3 ml-1.5" />
+              <ChevronDown size={16} className="h-3 w-3 ml-1.5" />
             </Button>
           </div>
+        </div>
+        <div className="footerBottom">
+          <div className="footerColumns">
+            Ankur
+          </div>
+          <div className="footerlegal"></div>
       </div>
-      <div className="md:ml-auto w-full justify-between md:justify-center flex items-center gap-x-2 text-muted-foreground">
-        <Button variant="ghost" size="sm">
-          Privacy Policy
-        </Button>
-        <Button variant="ghost" size="sm">
-          Terms & Conditions
-        </Button>
-      </div>
-    </div>
-    </div>
+      </nav>
+    </footer>
   )
 }
