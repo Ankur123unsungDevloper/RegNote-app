@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Logo } from "./logo"
 import { Facebook, Instagram, Twitter, Youtube, Globe, Linkedin, ChevronDown } from "lucide-react"
-import './page.css'
 
 export const Footer = () => {
   return (
