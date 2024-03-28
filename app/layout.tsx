@@ -1,5 +1,5 @@
 import { Toaster } from "sonner";
-import { Inter } from 'next/font/google'
+import { Outfit } from "next/font/google";
 import type { Metadata } from 'next'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { ConvexClientProvider } from '@/components/providers/convex-provider'
@@ -7,7 +7,8 @@ import './globals.css'
 import { ModalProvider } from "@/components/providers/modal-provider";
 import { EdgeStoreProvider } from "@/lib/edgestore";
 
-const inter = Inter({ subsets: ['latin'] })
+const font = Outfit({ subsets: ["latin"] });
+
 
 export const metadata: Metadata = {
   title: 'RegNote',
@@ -16,13 +17,13 @@ export const metadata: Metadata = {
     icon: [
       {
         media: "(prefers-color-scheme: light)",
-        url: "/logo.svg",
-        href: "/logo.svg",
+        url: "/logos/logoipsum-222.svg",
+        href: "/logos/logoipsum-222.svg",
       },
       {
         media: "(prefers-color-scheme: dark)",
-        url: "/logo-dark.svg",
-        href: "/logo-dark.svg",
+        url: "/logos/logoipsum-231.svg",
+        href: "/logos/logoipsum-231.svg",
       }
     ]
   }
@@ -35,7 +36,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={font.className}>
         <ConvexClientProvider>
           <EdgeStoreProvider>
             <ThemeProvider

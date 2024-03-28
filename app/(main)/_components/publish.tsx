@@ -98,9 +98,9 @@ export const Publish = ({
                 size="sm"
                 className="w-full text-xs"
                 disabled={isSubmitting}
-                onClick={onUnpublish}
+                onClick={onPublish}
               >
-                Unpublish
+                Unpublished
               </Button>
             </div>
           ) : (
