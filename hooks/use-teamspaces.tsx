@@ -1,15 +1,13 @@
 import { create } from "zustand";
 
-type SearchStore = {
+type TeamspaceStore = {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
-  toggle: () => void;
 };
 
-export const useSearch = create<SearchStore>((set, get) => ({
+export const useTeamspaces = create<TeamspaceStore>((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
-  toggle: () => set({ isOpen: !get().isOpen }),
 }));

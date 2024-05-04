@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useMutation } from "convex/react";
 import { useParams } from "next/navigation";
+
 import {
   Dialog,
   DialogContent,
@@ -16,7 +17,7 @@ import { Id } from "@/convex/_generated/dataModel";
 
 export const CoverImageModal = () => {
   const params = useParams();
-  const update = useMutation(api.documents.update);
+  //const update = useMutation(api.documents.update);
   const coverImage = useCoverImage();
   const { edgestore } = useEdgeStore();
   
@@ -41,10 +42,10 @@ export const CoverImageModal = () => {
         }
       });
 
-      await update({
-        id: params.documentId as Id<"documents">,
-        coverImage: res.url
-      });
+      //await update({
+      //  coverImage: res.url
+      //  id: params.documentId as Id<"documents">,
+      //});
 
       onClose();
     }

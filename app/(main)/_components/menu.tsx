@@ -1,14 +1,21 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  DropdownMenuContent
+} from "@/components/ui/dropdown-menu";
+import { FaFileExport } from "react-icons/fa";
+import { FaFileImport } from "react-icons/fa";
+import { IoTrashOutline } from "react-icons/io5";
 import { Skeleton } from "@/components/ui/skeleton";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
-import { useUser } from "@clerk/clerk-react";
-import { DropdownMenuContent } from "@radix-ui/react-dropdown-menu";
 import { useMutation } from "convex/react";
-import { MoreHorizontal, Trash } from "lucide-react";
+import { MoreHorizontal } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
@@ -20,7 +27,6 @@ export const Menu = ({
   documentId
 }: MenuProps) => {
   const router = useRouter();
-  const { user } = useUser();
   const archive = useMutation(api.documents.archive);
 
   const onArchive = () => {
@@ -42,7 +48,7 @@ export const Menu = ({
           size="sm"
           variant="ghost"
         >
-          <MoreHorizontal className="h-4 w-4" />
+          <MoreHorizontal className="h-6 w-6" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
@@ -52,19 +58,25 @@ export const Menu = ({
         forceMount
       >
         <DropdownMenuItem onClick={onArchive}>
-          <Trash className="h-4 w4 mr-2" />
+        <IoTrashOutline className="h-4 w-4 mr-2" />
           Delete
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <div className="text-xs text-muted-foreground p-2">
-          Last  edited by: {user?.fullName}
-        </div>
+        
+        <DropdownMenuItem>
+        <FaFileImport className="h-4 w-4 mr-2" />
+          Import
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={onArchive}>
+          <FaFileExport className="h-4 w-4 mr-2" />
+          Export
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
 };
 
-Menu.Skeleton = function MenuSekeleton() {
+Menu.Skeleton = function MenuSkeleton() {
   return (
     <Skeleton className="h-10 w-10" />
   )

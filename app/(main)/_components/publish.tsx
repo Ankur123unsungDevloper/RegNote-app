@@ -1,12 +1,17 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger
+} from "@/components/ui/popover";
 import { api } from "@/convex/_generated/api";
 import { Doc } from "@/convex/_generated/dataModel";
 import { useOrigin } from "@/hooks/use-origin";
 import { useMutation } from "convex/react";
-import { Check, Copy, Globe } from "lucide-react";
+import { Check, Copy } from "lucide-react";
+import { AiOutlineGlobal } from "react-icons/ai";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -21,19 +26,35 @@ export const Publish = ({
   const update = useMutation(api.documents.update);
 
   const [copied, setCopied] = useState(false);
-  const [isSubmitting, setIsSubmotting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const url = `${origin}/preview/${initialData._id}`;
 
   const onPublish = () => {
-    setIsSubmotting(true);
+    setIsSubmitting(true);
 
     const promise = update({
       id: initialData._id,
       isPublished: true,
     })
-      .finally(() => setIsSubmotting(false));
+      .finally(() => setIsSubmitting(false));
 
+      toast.promise(promise, {
+        loading: "Publishing...",
+        success: "Note published",
+        error: "Failed to published note.",
+      });
+    };
+
+    const onUnpublish = () => {
+      setIsSubmitting(true);
+  
+      const promise = update({
+        id: initialData._id,
+        isPublished: false,
+      })
+        .finally(() => setIsSubmitting(false));
+  
       toast.promise(promise, {
         loading: "Unpublishing...",
         success: "Note unpublished",
@@ -56,7 +77,7 @@ export const Publish = ({
           <Button size="sm" variant="ghost">
             Publish 
             {initialData.isPublished && (
-              <Globe
+              <AiOutlineGlobal
                 className="text-sky-500 w-4 h-4 ml-2"
               />
             )}
@@ -71,7 +92,7 @@ export const Publish = ({
           {initialData.isPublished ? (
             <div className="space-y-4">
               <div className="flex items-center gap-x-2">
-                <Globe className="text-sky-500 animate-pulse h-4 w-4" />
+                <AiOutlineGlobal className="text-sky-500 animate-pulse h-4 w-4" />
                 <p className="text-xs font-medium text-sky-500">
                   This note is live on web.
                 </p>
@@ -85,7 +106,7 @@ export const Publish = ({
                 <Button
                   onClick={onCopy}
                   disabled={copied}
-                  className="h-8 rounded-l-none"
+                  className="h-8 rounded-l-none bg-white"
                 >
                   {copied ? (
                     <Check className="h-4 w-4" />
@@ -96,16 +117,16 @@ export const Publish = ({
               </div>
               <Button
                 size="sm"
-                className="w-full text-xs"
+                className="w-full text-white font-bold text-xs bg-sky-500 hover:bg-sky-600"
                 disabled={isSubmitting}
-                onClick={onPublish}
+                onClick={onUnpublish}
               >
                 Unpublished
               </Button>
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center">
-              <Globe
+              <AiOutlineGlobal
                 className="h-8 w-8 text-muted-foreground mb-2"
               />
               <p className="text-sm font-medium mb-2">
@@ -117,7 +138,7 @@ export const Publish = ({
               <Button
                 disabled={isSubmitting}
                 onClick={onPublish}
-                className="w-full text-xs"
+                className="w-full font-bold text-white text-xs bg-sky-500 hover:bg-sky-600"
                 size="sm"
               >
                 Publish

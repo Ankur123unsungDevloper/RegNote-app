@@ -6,11 +6,13 @@ import { MenuIcon } from "lucide-react";
 
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
+import { useUser } from "@clerk/clerk-react";
 
 import { Title } from "./title";
 import { Banner } from "./banner";
 import { Menu } from "./menu";
 import { Publish } from "./publish";
+import { Update } from "./update";
 
 interface NavbarProps {
   isCollapsed: boolean;
@@ -22,6 +24,7 @@ export const Navbar = ({
   onResetWidth
 }: NavbarProps) => {
   const params = useParams();
+  const { user } = useUser();
 
   const document = useQuery(api.documents.getById, {
     documentId: params.documentId as Id<"documents">,
@@ -54,7 +57,11 @@ export const Navbar = ({
         )}
         <div className="flex items-center justify-between w-full">
           <Title initialData={document} />
-          <div className="flex items-center gap-x-2">
+          <div className="flex items-center gap-x-1">
+            <div className="text-xs text-muted-foreground p-2">
+              Last  edited by: {user?.fullName}
+            </div>
+            <Update />
             <Publish initialData={document} />
             <Menu documentId={document._id} />
           </div>

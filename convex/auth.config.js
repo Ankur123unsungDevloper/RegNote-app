@@ -1,7 +1,7 @@
 export default {
   providers: [
     {
-      domain: "https://just-dodo-78.clerk.accounts.dev",
+      domain: "https://guided-sheepdog-63.clerk.accounts.dev",
       applicationID: "convex",
     }
   ]

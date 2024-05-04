@@ -4,12 +4,15 @@ import { cn } from "@/lib/utils";
 import {
   ChevronsLeft,
   MenuIcon,
-  Plus,
-  PlusCircle,
-  Search,
-  Settings,
-  Trash
+  Settings
 } from "lucide-react";
+import {
+  IoTrashOutline,
+  IoCreateOutline,
+  IoSearch
+} from "react-icons/io5";
+import { PiUserRectangleFill } from "react-icons/pi";
+import { BsInbox } from "react-icons/bs";
 import { useParams, usePathname } from "next/navigation";
 import {
   ElementRef,
@@ -29,14 +32,22 @@ import {
   PopoverTrigger,
   PopoverContent
 } from "@/components/ui/popover";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { TrashBox } from "./trash-box";
 import { useSearch } from "@/hooks/use-search";
 import { useSettings } from "@/hooks/use-settings";
+import { useTeamspaces } from "@/hooks/use-teamspaces";
 import { Navbar } from "./navbar";
 
 export const Navigation = () => {
   const search = useSearch();
   const settings = useSettings();
+  const teamspaces = useTeamspaces();
   const params = useParams();
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -147,43 +158,75 @@ export const Navigation = () => {
           onClick={collapse}
           role="button"
           className={cn(
-            "h-6 w-6 text-muted-foreground rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 absolute top-3 right-2 opacity-0 group-hover/sidebar:opacity-100 transition",
+            "h-6 w-6 text-muted-foreground rounded-sm dark:hover:bg-neutral-600 absolute top-3 right-[35px] opacity-0 group-hover/sidebar:opacity-100 transition",
             isMobile && "opacity-100"
           )}
         >
           <ChevronsLeft className="h-6 w-6" />
         </div>
+        <div
+          onClick={handleCreate}
+          role="button"
+          className={cn(
+            "h-7 w-7 text-muted-foreground rounded-sm dark:hover:bg-neutral-600 absolute top-2 right-2 items-center justify-center p-1",
+            isMobile && "opacity-100"
+          )}
+        >
+          <IoCreateOutline className="h-5 w-5" />
+        </div>
         <div>
           <UserItem />
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger className="w-full">
+                <Item
+                  label="Search"
+                  icon={IoSearch}
+                  onClick={search.onOpen}
+                />
+              </TooltipTrigger>
+              <TooltipContent className="text-muted-foreground">
+                <h6 className="">Search and quickly jump to a page</h6>
+                <p className="text-[10px] font-medium">CTRL + K</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger className="w-full">
+              <Item
+                label="Inbox"
+                icon={BsInbox}
+                isSearch
+                onClick={search.onOpen}
+              />
+              </TooltipTrigger>
+              <TooltipContent>
+                <h6>Search and quickly jump to a page</h6>
+                <p>CTRL + K</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
           <Item
-            label="Search"
-            icon={Search}
-            isSearch
-            onClick={search.onOpen}
-          />
-          <Item
-            label="Settings"
+            label="Settings & members"
             icon={Settings}
             onClick={settings.onOpen}
-          />
-          <Item
-            onClick={handleCreate}
-            label="New page"
-            icon={PlusCircle}
           />
         </div>
         <div className="mt-4">
           <DocumentList />
-          <Item
-            onClick={handleCreate}
-            label="Add a page"
-            icon={Plus}
-          />
+          <div className="mt-4">
+            <Item
+              label="Create a teamspace"
+              icon={PiUserRectangleFill}
+              onClick={teamspaces.onOpen}
+              />
+          </div>
           <Popover>
-          <PopoverTrigger className="w-full mt-4">
+          <PopoverTrigger className="w-full">
             <Item
               label="Trash"
-              icon={Trash} />
+              icon={IoTrashOutline} />
             </PopoverTrigger>
             <PopoverContent
               className="p-0 w-72"

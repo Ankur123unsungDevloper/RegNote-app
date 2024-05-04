@@ -1,10 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useState
+} from "react";
 import { File } from "lucide-react";
 import { useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
-import { useUser } from "@clerk/clerk-react";
+import { useUser } from "@clerk/nextjs";
 import {
   CommandDialog,
   CommandEmpty,
@@ -79,7 +82,7 @@ export const SearchCommand = () => {
                 {document.title}
               </span>
             </CommandItem>
-          ))};
+          ))}
         </CommandGroup>
       </CommandList>
     </CommandDialog>

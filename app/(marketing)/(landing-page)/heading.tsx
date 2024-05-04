@@ -1,7 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { PiArrowRight } from "react-icons/pi";
 
 const Heading = () => {
   return ( 
@@ -16,7 +14,6 @@ const Heading = () => {
       </div>
       <Button>
         Get RegNote free
-        <ArrowRight className="ml-2" />
       </Button>
       <Button
         className="text-blue-700 pl-10 hover:underline"
@@ -25,7 +22,6 @@ const Heading = () => {
       >
         <Link href="/">
           Request a demo
-          <PiArrowRight className="ml-2" />
         </Link>
       </Button>
       </div>

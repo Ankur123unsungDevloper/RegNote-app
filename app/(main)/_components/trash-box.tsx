@@ -5,9 +5,19 @@ import { Spinner } from "@/components/spinner";
 import { Input } from "@/components/ui/input";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
-import { useMutation, useQuery } from "convex/react";
-import { Search, Trash, Undo } from "lucide-react";
-import { useParams, useRouter } from "next/navigation";
+import {
+  useMutation,
+  useQuery
+} from "convex/react";
+import {
+  Search,
+  Undo
+} from "lucide-react";
+import { IoTrashOutline } from "react-icons/io5";
+import {
+  useParams,
+  useRouter
+} from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -74,7 +84,7 @@ export const TrashBox = () => {
         <Input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="h-7 px-2 focus-visible:ring-transparent bg-secoundary"
+          className="h-7 px-2 focus-visible:ring-transparent bg-secondary"
           placeholder="Filter by page title..."
         />
       </div>
@@ -105,7 +115,7 @@ export const TrashBox = () => {
                   role="button"
                   className="rounded-sm p-2 hover:bg-neutral-200 dark:hover:bg-neutral-600"
                 >
-                  <Trash className="h-4 w-4 text-muted-foreground" />
+                  <IoTrashOutline className="h-4 w-4 text-muted-foreground" />
                 </div>
               </ConfirmModal>
               
