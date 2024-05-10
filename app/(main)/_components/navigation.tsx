@@ -186,7 +186,7 @@ export const Navigation = () => {
                 />
               </TooltipTrigger>
               <TooltipContent className="text-muted-foreground">
-                <h6 className="">Search and quickly jump to a page</h6>
+                <h6 className="text-white">Search and quickly jump to a page</h6>
                 <p className="text-[10px] font-medium">CTRL + K</p>
               </TooltipContent>
             </Tooltip>
@@ -197,13 +197,12 @@ export const Navigation = () => {
               <Item
                 label="Inbox"
                 icon={BsInbox}
-                isSearch
                 onClick={search.onOpen}
               />
               </TooltipTrigger>
-              <TooltipContent>
-                <h6>Search and quickly jump to a page</h6>
-                <p>CTRL + K</p>
+              <TooltipContent className="text-muted-foreground">
+                <h6 className="text-white">Search and quickly jump to a page</h6>
+                <p className="text-[10px] font-medium">CTRL + K</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
