@@ -15,14 +15,24 @@ import { useEdgeStore } from "@/lib/edgestore";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 
-export const CoverImageModal = () => {
+import { Button } from "@/components/ui/button";
+
+interface CoverImageModalProps {
+  url?: string;
+}
+
+export const CoverImageModal= ({
+  url,
+}: CoverImageModalProps) => {
   const params = useParams();
-  //const update = useMutation(api.documents.update);
+  const update = useMutation(api.documents.update);
   const coverImage = useCoverImage();
   const { edgestore } = useEdgeStore();
   
   const [file, setFile] = useState<File>();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const removeCoverImage = useMutation(api.documents.removeCoverImage);
 
   const onClose = () => {
     setFile(undefined);
@@ -42,22 +52,59 @@ export const CoverImageModal = () => {
         }
       });
 
-      //await update({
-      //  coverImage: res.url
-      //  id: params.documentId as Id<"documents">,
-      //});
+      await update({
+        id: params.documentId as Id<"documents">,
+        coverImage: res.url
+      });
 
       onClose();
     }
   }
+  
+  const onRemove = async () => {
+    if (url) {
+      await edgestore.publicFiles.delete({
+        url: url,
+      });
+    }
+  removeCoverImage({
+    id: params.documentId as Id<"documents">
+  });
+};
 
   return (
     <Dialog open={coverImage.isOpen} onOpenChange={coverImage.onClose}>
       <DialogContent>
-        <DialogHeader>
-          <h2 className="text-center text-lg font-semibold">
-            Change Cover Image
-          </h2>
+        <DialogHeader className="flex flex-row border-b pb-2">
+          <div className="flex items-center justify-between w-full">
+            <div className="flex flex-row gap-1">
+              <Button
+                className="text-center text-sm font-semibold"
+                variant="ghost"
+                size="sm"
+              >
+                Upload
+              </Button>
+              <Button
+                className="text-center text-sm font-semibold"
+                variant="ghost"
+                size="sm"
+              >
+                Unsplash
+              </Button>
+            </div>
+            <div className="flex items-center gap-x-1">
+              <Button
+                onClick={onRemove}
+                className="text-muted-foreground text-xs"
+                variant="ghost"
+                size="sm"
+              >
+                Remove
+              </Button>
+            </div>
+            
+          </div>
         </DialogHeader>
         <SingleImageDropzone
           className="w-full outline-none"

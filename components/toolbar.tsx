@@ -1,13 +1,23 @@
 "use client";
 
-import { ElementRef, useRef, useState } from "react";
-import { ImageIcon, Smile, X } from "lucide-react";
+import {
+  ElementRef,
+  useRef,
+  useState
+} from "react";
+import {
+  ImageIcon,
+  Smile,
+  X
+} from "lucide-react";
 import { useMutation } from "convex/react";
 import TextareaAutosize from "react-textarea-autosize";
+
 import { useCoverImage } from "@/hooks/use-cover-image";
 import { Doc } from "@/convex/_generated/dataModel";
 import { Button } from "@/components/ui/button";
 import { api } from "@/convex/_generated/api";
+
 import { IconPicker } from "./icon-picker";
 
 interface ToolbarProps {
@@ -44,7 +54,7 @@ export const Toolbar = ({
     setValue(value);
     update({
       id: initialData._id,
-      title: value || "Untitled"
+      title: value || "Untitled",
     });
   };
 
@@ -73,7 +83,7 @@ export const Toolbar = ({
   return (
     <div className="pl-[54px] group relative">
       {!!initialData.icon && !preview && (
-        <div className="flex items-center gap-x-2 group/icon pt-6">
+        <div className="flex items-center gap-x-2 group/icon pt-6 absolute bottom-[70px]">
           <IconPicker onChange={onIconSelect}>
             <p className="text-6xl hover:opacity-75 transition">
               {initialData.icon}
@@ -110,7 +120,7 @@ export const Toolbar = ({
         {!initialData.coverImage && !preview && (
           <Button
             onClick={coverImage.onOpen}
-            className="text-muted-foreground text-xs"
+            className="text-muted-foreground text-xs relative left-[100px]"
             variant="outline"
             size="sm"
           >
@@ -124,7 +134,7 @@ export const Toolbar = ({
           ref={inputRef}
           onBlur={disableInput}
           onKeyDown={onKeyDown}
-          value={value}
+          placeholder={value}
           onChange={(e) => onInput(e.target.value)}
           className="text-5xl bg-transparent font-bold break-words outline-none text-[#3F3F3F] dark:text-[#CFCFCF] resize-none"
         />

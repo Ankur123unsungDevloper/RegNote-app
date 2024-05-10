@@ -9,7 +9,7 @@ import { Navigation } from "./_components/navigation";
 
 import { ThemeProvider } from '@/components/providers/theme-provider'
 
-import {} from "@clerk/nextjs"
+import { InboxCommand } from "@/components/inbox-command";
 
 const MainLayout = ({
   children
@@ -43,6 +43,7 @@ const MainLayout = ({
         <Navigation />
         <main className="flex-1 h-full overflow-y-auto">
           <SearchCommand />
+          <InboxCommand />
           {children}
         </main>
       </ThemeProvider>

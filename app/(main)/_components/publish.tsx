@@ -9,6 +9,7 @@ import {
 import { api } from "@/convex/_generated/api";
 import { Doc } from "@/convex/_generated/dataModel";
 import { useOrigin } from "@/hooks/use-origin";
+
 import { useMutation } from "convex/react";
 import { Check, Copy } from "lucide-react";
 import { AiOutlineGlobal } from "react-icons/ai";
@@ -78,7 +79,7 @@ export const Publish = ({
             Publish 
             {initialData.isPublished && (
               <AiOutlineGlobal
-                className="text-sky-500 w-4 h-4 ml-2"
+                className="text-sky-500 animate-pulse w-4 h-4 ml-2"
               />
             )}
           </Button>

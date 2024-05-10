@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useUser } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
-import { PlusCircle } from "lucide-react";
+import { IoIosAddCircle } from "react-icons/io";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
@@ -40,7 +40,7 @@ const DocumentsPage = () => {
         Welcome to {user.firstName}&apos;s RegNote
       </h2>
       <Button onClick={onCreate} className="bg-white">
-        <PlusCircle className="h-4 w-4 mr-2" />
+        <IoIosAddCircle className="h-4 w-4 mr-2" />
         Create a note
       </Button>
     </div>

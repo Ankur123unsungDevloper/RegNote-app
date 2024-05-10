@@ -1,9 +1,11 @@
 "use client";
 
 import { ConfirmModal } from "@/components/modals/confirm-modal";
+
 import { Button } from "@/components/ui/button";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
+
 import { useMutation } from "convex/react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -16,6 +18,7 @@ export const Banner = ({
   documentId
 }: BannerProps) => {
   const router = useRouter();
+
   const remove = useMutation(api.documents.remove);
   const restore = useMutation(api.documents.restore);
 
@@ -60,7 +63,7 @@ export const Banner = ({
         <Button
           size="sm"
           variant="outline"
-          className="border-white bg-transparent hover:bg-primary/5 text-white hover:text-white p1 px-2 h-auto font-normal"
+          className="border-white bg-transparent hover:bg-primary/5 text-white hover:text-white p-1 px-2 h-auto font-normal"
         >
           Remove permanently
         </Button>

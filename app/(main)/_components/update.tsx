@@ -46,7 +46,7 @@ export const Update = () => {
         </div>
         <SheetFooter>
           <SheetClose asChild>
-            <Button type="submit">Save changes</Button>
+            <Button type="submit" className="bg-white">Save changes</Button>
           </SheetClose>
         </SheetFooter>
       </SheetContent>

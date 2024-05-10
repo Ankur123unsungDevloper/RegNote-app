@@ -21,8 +21,8 @@ export const metadata: Metadata = {
     icon: [
       {
         media: "(prefers-color-scheme: dark)",
-        url: "/logos/logo-light.svg",
-        href: "/logos/logo-light.svg",
+        url: "/logos/logo-dark.svg",
+        href: "/logos/logo-dark.svg",
       }
     ]
   }
@@ -34,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={font.className}>
         <ConvexClientProvider>
           <EdgeStoreProvider>

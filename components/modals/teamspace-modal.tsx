@@ -50,7 +50,7 @@ export const TeamspaceModal = () => {
             Learn about Teamspaces
           </Button>
           <Button className="bg-blue-600 hover:bg-blue-700 text-gray-400 hover:text-white" size="sm">
-            <Link href="/trello">
+            <Link href="/">
               Create teamspace
             </Link>
           </Button>

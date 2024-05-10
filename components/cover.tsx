@@ -62,15 +62,6 @@ export const Cover = ({
             <ImageIcon className="h-4 w-4 mr-2" />
             Change Cover
           </Button>
-          <Button
-            onClick={onRemove}
-            className="text-muted-foreground text-xs"
-            variant="outline"
-            size="sm"
-          >
-            <X className="h-4 w-4 mr-2" />
-            Remove
-          </Button>
         </div>
       )}
     </div>

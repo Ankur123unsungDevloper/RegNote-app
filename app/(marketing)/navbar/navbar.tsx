@@ -1,5 +1,5 @@
 import { ActionButtons } from "./_components/action-button";
-import { Logo } from "./_components/logo";
+import { Logo } from "../../../components/logo";
 import { Menu } from "./_components/menu";
 
 const Navbar = () => {

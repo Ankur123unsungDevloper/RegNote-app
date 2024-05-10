@@ -8,12 +8,15 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent
 } from "@/components/ui/dropdown-menu";
+
 import { FaFileExport } from "react-icons/fa";
 import { FaFileImport } from "react-icons/fa";
 import { IoTrashOutline } from "react-icons/io5";
+
 import { Skeleton } from "@/components/ui/skeleton";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
+
 import { useMutation } from "convex/react";
 import { MoreHorizontal } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -67,7 +70,7 @@ export const Menu = ({
         <FaFileImport className="h-4 w-4 mr-2" />
           Import
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={onArchive}>
+        <DropdownMenuItem>
           <FaFileExport className="h-4 w-4 mr-2" />
           Export
         </DropdownMenuItem>

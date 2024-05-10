@@ -11,6 +11,7 @@ import {
   IoCreateOutline,
   IoSearch
 } from "react-icons/io5";
+import { HiPlusSm } from "react-icons/hi";
 import { PiUserRectangleFill } from "react-icons/pi";
 import { BsInbox } from "react-icons/bs";
 import { useParams, usePathname } from "next/navigation";
@@ -37,9 +38,10 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
+} from "@/components/ui/tooltip";
 import { TrashBox } from "./trash-box";
 import { useSearch } from "@/hooks/use-search";
+import { useInbox } from "@/hooks/use-inbox";
 import { useSettings } from "@/hooks/use-settings";
 import { useTeamspaces } from "@/hooks/use-teamspaces";
 import { Navbar } from "./navbar";
@@ -48,6 +50,7 @@ export const Navigation = () => {
   const search = useSearch();
   const settings = useSettings();
   const teamspaces = useTeamspaces();
+  const inbox = useInbox();
   const params = useParams();
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -178,16 +181,16 @@ export const Navigation = () => {
           <UserItem />
           <TooltipProvider>
             <Tooltip>
-              <TooltipTrigger className="w-full">
+              <TooltipTrigger className="w-full hover:rounded-sm">
                 <Item
                   label="Search"
                   icon={IoSearch}
                   onClick={search.onOpen}
                 />
               </TooltipTrigger>
-              <TooltipContent className="text-muted-foreground">
+              <TooltipContent className="text-muted-foreground relative left-[240px] bottom-[40px]">
                 <h6 className="text-white">Search and quickly jump to a page</h6>
-                <p className="text-[10px] font-medium">CTRL + K</p>
+                <p className="text-[13px] font-medium">Ctrl+K</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
@@ -197,35 +200,70 @@ export const Navigation = () => {
               <Item
                 label="Inbox"
                 icon={BsInbox}
-                onClick={search.onOpen}
+                onClick={inbox.onOpen}
               />
               </TooltipTrigger>
-              <TooltipContent className="text-muted-foreground">
-                <h6 className="text-white">Search and quickly jump to a page</h6>
-                <p className="text-[10px] font-medium">CTRL + K</p>
+              <TooltipContent className="text-muted-foreground relative left-[240px] top-[40px]">
+                <h6 className="text-white">View recent update and notifications</h6>
+                <p className="text-[13px] font-medium">Ctrl+Alt+U</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
-          <Item
-            label="Settings & members"
-            icon={Settings}
-            onClick={settings.onOpen}
-          />
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger className="w-full">
+              <Item
+                label="Settings & members"
+                icon={Settings}
+                onClick={settings.onOpen}
+              />
+              </TooltipTrigger>
+              <TooltipContent className="text-muted-foreground relative left-[240px] top-[35px]">
+                <h6 className="text-white">Manage your account and settings</h6>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
         <div className="mt-4">
           <DocumentList />
           <div className="mt-4">
             <Item
-              label="Create a teamspace"
-              icon={PiUserRectangleFill}
-              onClick={teamspaces.onOpen}
-              />
+              label="Add a page"
+              icon={HiPlusSm}
+              onClick={handleCreate}
+            />
+          </div>
+          <div className="mt-4">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger className="w-full">
+                <Item
+                  label="Create a teamspace"
+                  icon={PiUserRectangleFill}
+                  onClick={teamspaces.onOpen}
+                />
+                </TooltipTrigger>
+                <TooltipContent className="text-muted-foreground relative left-[240px] top-[35px]">
+                  <h6 className="text-white">Search and quickly jump to a page</h6>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
           <Popover>
-          <PopoverTrigger className="w-full">
-            <Item
-              label="Trash"
-              icon={IoTrashOutline} />
+            <PopoverTrigger className="w-full">
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger className="w-full">
+                  <Item
+                    label="Trash"
+                    icon={IoTrashOutline}
+                  />
+                  </TooltipTrigger>
+                  <TooltipContent className="text-muted-foreground relative left-[210px] top-[35px]">
+                    <h6 className="text-white">Restore deleted pages.</h6>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </PopoverTrigger>
             <PopoverContent
               className="p-0 w-72"
@@ -256,14 +294,15 @@ export const Navigation = () => {
           />
         ) : (
           <nav className="bg-transparent px-3 py-2 w-full">
-          {
-            isCollapsed &&
-            <MenuIcon
-              onClick={resetWidth}
-              role="button"
-              className="h-6 w-6 text-muted-foreground" />
-          }
-        </nav>
+            {
+              isCollapsed &&
+              <MenuIcon
+                onClick={resetWidth}
+                role="button"
+                className="h-6 w-6 text-muted-foreground"
+              />
+            }
+          </nav>
         )}
       </div>
     </>

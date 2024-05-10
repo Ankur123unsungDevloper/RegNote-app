@@ -8,7 +8,7 @@ import {
   FaTwitter,
   FaYoutube
 } from "react-icons/fa";
-import { Logo } from "../navbar/_components/logo";
+import { Logo } from "../../../components/logo";
 
 const Footer = () => {
   return ( 

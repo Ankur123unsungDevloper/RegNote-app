@@ -1,8 +1,14 @@
 "use client";
 
-import { useMutation, useQuery } from "convex/react";
+import {
+  useMutation,
+  useQuery
+} from "convex/react";
 import dynamic from "next/dynamic";
-import { useMemo } from "react";
+import {
+  useMemo,
+  useState
+} from "react";
 
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
@@ -19,6 +25,8 @@ interface DocumentIdPageProps {
 const DocumentIdPage = ({
   params
 }: DocumentIdPageProps) => {
+  const [coverUrl, setCoverUrl] = useState<string>('https://source.unsplash.com/random/landscape');
+
   const Editor = useMemo(() => dynamic(() => import("@/components/editor"), { ssr: false }) ,[]);
 
   const document = useQuery(api.documents.getById, {
@@ -56,7 +64,7 @@ const DocumentIdPage = ({
 
   return ( 
     <div className="pb-40">
-      <Cover url={document.coverImage} />
+      <Cover url={coverUrl} />
       <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
         <Toolbar initialData={document} />
         <Editor
